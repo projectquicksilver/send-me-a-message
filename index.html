@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Special 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe5f1 50%, #ffd6e8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0.3;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .box {
+            background: white;
+            padding: 50px 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            animation: fadeIn 0.8s ease;
+            border: 3px solid #ffb6d9;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+
+        p {
+            color: #d45d8f;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        button {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            position: relative;
+            z-index: 100;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5);
+        }
+
+        .no-btn {
+            background: white;
+            color: #ff69b4;
+            border: 3px solid #ff69b4;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .no-btn:hover {
+            background: #fff5f9;
+        }
+
+        .question-container {
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            position: relative;
+            height: 80px;
+            width: 100%;
+        }
+
+        .gif-container {
+            margin: 30px 0;
+        }
+
+        .gif-container img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .final-text {
+            font-size: 1.1em;
+            color: #d45d8f;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;">💕</div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">💖</div>
+    <div class="heart" style="left: 50%; animation-delay: 4s;">💗</div>
+    <div class="heart" style="left: 70%; animation-delay: 1s;">💕</div>
+    <div class="heart" style="left: 90%; animation-delay: 3s;">💖</div>
+
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="box">
+            <h1>💕 Welcome 💕</h1>
+            <p>I have something special to ask you...</p>
+            <button class="start-btn" onclick="showQuestion()">Start</button>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="question-screen" class="box hidden">
+            <div class="question-container">
+                <h1>Will you be mine? 💝</h1>
+                <p>I promise to make you smile every day!</p>
+                <div class="button-container">
+                    <button class="yes-btn" onclick="showFinal()">Yes! 💕</button>
+                    <button class="no-btn" id="no-btn" onmouseover="moveButton()">No</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Screen -->
+        <div id="final-screen" class="box hidden">
+            <h1>Yay! 🎉💕</h1>
+            <p>You've made me the happiest person!</p>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif" alt="Celebrating love">
+            </div>
+            <p class="final-text">Thank you for saying yes! 💖✨</p>
+        </div>
+    </div>
+
+    <script>
+        function showQuestion() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('question-screen').classList.remove('hidden');
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('no-btn');
+            const box = document.getElementById('question-screen');
+            
+            const boxRect = box.getBoundingClientRect();
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            // Random position within the box, with padding
+            const padding = 60;
+            const maxX = boxRect.width - btnWidth - padding * 2;
+            const maxY = boxRect.height - btnHeight - padding * 2;
+            
+            const randomX = Math.floor(Math.random() * maxX) + padding;
+            const randomY = Math.floor(Math.random() * maxY) + padding;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function showFinal() {
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('final-screen').classList.remove('hidden');
+            
+            // Create confetti effect
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const emojis = ['💕', '💖', '💗', '💝', '💘', '✨', '🎉'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'heart';
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 7000);
+                }, i * 100);
+            }
+        }
+
+        // Initialize No button position
+        window.onload = function() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = '50%';
+            noBtn.style.transform = 'translateX(50px)';
+        }
+    </script>
+</body>
+</html>
