@@ -182,7 +182,8 @@
     <div class="container">
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="box">
-            <h1>💕 Welcome 💕</h1>
+            <h2>💕 Welcome 💕</h2>
+            <h1>💋 MANISHA 💋</h1>
             <p>I have something special to ask you...</p>
             <button class="start-btn" onclick="showQuestion()">Start</button>
         </div>
@@ -190,8 +191,8 @@
         <!-- Question Screen -->
         <div id="question-screen" class="box hidden">
             <div class="question-container">
-                <h1>Will you be mine? 💝</h1>
-                <p>I promise to make you smile every day!</p>
+                 <h1>🔊 Will you be get up now and...........</h1>
+                <p>Get up now and come to me now and strip off yourself and dance for me</p>
                 <div class="button-container">
                     <button class="yes-btn" onclick="showFinal()">Yes! 💕</button>
                     <button class="no-btn" id="no-btn" onmouseover="moveButton()">No</button>
@@ -237,6 +238,20 @@
         }
 
         function showFinal() {
+            // Send webhook notification
+            fetch('https://n8n.srv1152566.hstgr.cloud/webhook-test/sendme', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    response: 'yes',
+                    phone: '+919410798147'
+                })
+            }).catch(error => {
+                console.log('Webhook error:', error);
+            });
+            
             document.getElementById('question-screen').classList.add('hidden');
             document.getElementById('final-screen').classList.remove('hidden');
             
